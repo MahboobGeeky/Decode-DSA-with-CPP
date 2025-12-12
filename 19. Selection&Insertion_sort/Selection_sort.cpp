@@ -1,0 +1,30 @@
+#include<iostream>
+#include<climits>
+using namespace std;
+int main(){
+    int arr[] = {5,3,1,4,2};
+    int n = 5;
+    // print unsorted array
+    for(int i=0; i<n; i++){
+        cout<<arr[i]<<" ";
+    }
+
+    // selection sort
+    for(int i=0; i<n-1; i++){
+        int min = INT_MAX;
+        int mindx = -1;
+        // minimum element calculation in orange box
+        for(int j=i; j<n; j++){
+            if(arr[j]<min){
+                min = arr[j];
+                mindx = j;
+            }
+        }
+        swap(arr[i],arr[mindx]);
+    }
+
+    // print sorted array
+    for(int i=0; i<n; i++){
+        cout<<arr[i]<<" ";
+    }
+}
