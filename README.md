@@ -1,2 +1,2 @@
 # Decode-DSA-with-CPP
-this section contains all necessary code.
+this is DSA with C++ course.
