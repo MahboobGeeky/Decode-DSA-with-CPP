@@ -1,36 +1,26 @@
 #include<iostream>
-#include<string>
-#include<unordered_map>
-#include<vector>
 using namespace std;
-vector<int> subarraySum(vector<int>& nums) {
-    vector<int> pre;
-    int sum = 0;
-    for(int i=0;i<nums.size();i++){
-        sum = sum + nums[i];
-        pre.push_back(sum);
-    }
-    return pre;
-}
 int main(){
-    vector<int> nums;
-    nums.push_back(3);
-    nums.push_back(2);
-    nums.push_back(4);
-    nums.push_back(5);
-    nums.push_back(2);
-    nums.push_back(8);
-    nums.push_back(1);
-    nums.push_back(2);
-    nums.push_back(7);
-    cout<<nums.size();
+    int arr[] = {1,2,4,5,9,15,18,21,24};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int x = 12;
     cout<<endl;
-    vector<int> v = subarraySum(nums);
-    for(int i=0;i<v.size();i++){
-        cout<<v[i]<<" ";
+    // binary search
+    int lo = 0;
+    int hi = n-1;
+    bool flag = false;
+    while(lo<=hi){
+        int mid = lo + (hi-lo)/2;
+        if(arr[mid]==x){
+            flag = true;
+            cout<<arr[mid-1];
+            break;
+        } 
+        else if(arr[mid]<x){
+            lo = mid+1;
+        }else{
+            hi = mid-1;
+        }
     }
-    cout<<endl;
-    cout<<v.size();
-
-    
+    if(flag==false) cout<<arr[hi];
 }
