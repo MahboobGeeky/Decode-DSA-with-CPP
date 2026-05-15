@@ -8,18 +8,19 @@ vector<list<int>> graph;
 unordered_set<int> visited;
 
 int v; // no of vertices
-void add_adge(int src, int dest, int wt, bool bi_dir = true){
-    graph[src][dest] = wt;
+void add_adge(int src, int dest, bool bi_dir = true){
+    graph[src].push_back(dest);
     if(bi_dir){
-        graph[dest][src] = wt;
+        graph[dest].push_back(src);
     }
 }
 
 
 bool dfs(int curr, int end ){
+    if(curr == end) return true;
     visited.insert(curr); // mark visited
     for(auto neighbour : graph[curr]){
-        if(not visited.count(curr)){
+        if(not visited.count(neighbour)){
             bool result = dfs(neighbour,end);
             if(result) return true;
         }
@@ -28,23 +29,23 @@ bool dfs(int curr, int end ){
 }
 
 bool anyPath(int src, int dest) {
-    return dfs(start,end);
+    return dfs(src,dest);
 }
 
 
 int main() {
+
     cin>>v;
-    graph.resize(v, unordered_map<int,int> ());
+    graph.resize(v, list<int> ());
     int e;
     cin>>e;
     visited.clear();
     while(e--){
-        int s, d, wt;
-        cin>>s>>d>>wt;
-        add_adge(s, d, wt);
+        int s, d;
+        cin>>s>>d;
+        add_adge(s, d);
 
     }
-
     int x, y;
     cin>>x>>y;
     cout<<anyPath(x,y)<<" \n";
